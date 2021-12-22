@@ -52,6 +52,8 @@ spec:
                 name: {{ .Values.EnvConfigMapRef.name }}
             - secretRef:
                 name: {{ .Values.EnvSecretRef.name }}
+            - secretRef:
+                name: {{ .Values.EnvSecretRefServices.name }}
           ports:
             - name: http
               containerPort: 80

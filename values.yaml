@@ -33,6 +33,9 @@ EnvConfigMapRef:
 EnvSecretRef: 
   enabled: true
   name: "laravel-in-kubernetes"
+EnvSecretRefServices: 
+  enabled: true
+  name: "laravel-in-kubernetes-services"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -141,6 +144,27 @@ postgresql:
     limits:
       memory: 150Mi
       cpu: 200m
+
+rabbitmq: 
+  enabled: true
+  port: "5672"
+  host: "rabbitmq"
+  auth: 
+    username: 'rabbitmq_user'
+    password: 'password'
+  global:
+    storageClass: 'longhorn'
+  metrics:
+    enabled: false
+  ingress:
+    enabled: false
+    path: '/'
+    hostname: hostnamehere.com
+
+meilisearch: 
+  enabled: true
+  host: 'meilisearch:7700'
+  secretKey: meilikeyhere
 
 redis:
   enabled: true
