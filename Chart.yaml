@@ -1,10 +1,14 @@
 apiVersion: v2
-name: vibspecdb
-description: A Helm chart of Vibspec-Laravel Application for K8S
-home: https://vibspecdb.k8s.photonicdata.science
+name: nmrxiv
+description: A Helm chart for the nmrXiv infrastructure
+home: https://nmrxiv.org/
 maintainers:
   - name: Stefaniuk Nazar
     email: stefaniuk.nazar@gmail.com
+  - name: Nisha Sharma
+  - name: Steffen Neumann
+    email: sneumann@ipb-halle.de
+
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
@@ -18,7 +22,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.2.9
+version: 0.2.3
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -30,18 +34,17 @@ appVersion: "0.1.0"
 
 dependencies:
 - name: postgresql
-  version: "10.13.11"
+  version: "10.13.x"
   repository: "https://charts.bitnami.com/bitnami"
   condition: postgresql.enabled
 - name: redis
-  version: "15.6.3"
+  version: "15.6.x"
   repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
-- name: rabbitmq
-  version: "8.24.12"
-  repository: https://charts.bitnami.com/bitnami
-  condition: rabbitmq.enabled
-- name: meilisearch
-  version: "0.1.22"
-  repository: https://meilisearch.github.io/meilisearch-kubernetes
-  condition: meilisearch.enabled
+- name: minio
+  version: "3.4.x"
+  repository: "https://charts.min.io/"
+### Alternatively:
+#  version: "9.3.0"
+#  repository: "https://charts.bitnami.com/bitnami"
+  condition: minio.enabled
